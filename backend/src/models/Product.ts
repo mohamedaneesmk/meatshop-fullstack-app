@@ -10,7 +10,7 @@ export interface IProduct extends Document {
     _id: mongoose.Types.ObjectId;
     name: string;
     description: string;
-    category: 'chicken' | 'mutton' | 'seafood' | 'eggs';
+    category: 'beef';
     image: string;
     weightVariants: IWeightVariant[];
     isBestSeller: boolean;
@@ -59,8 +59,8 @@ const productSchema = new Schema<IProduct>(
             type: String,
             required: [true, 'Category is required'],
             enum: {
-                values: ['chicken', 'mutton', 'seafood', 'eggs'],
-                message: 'Category must be chicken, mutton, seafood, or eggs',
+                values: ['beef'],
+                message: 'Category must be beef',
             },
         },
         image: {

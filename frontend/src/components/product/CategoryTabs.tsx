@@ -7,11 +7,8 @@ interface CategoryTabsProps {
 }
 
 const categories: { id: Category; label: string; icon: string }[] = [
-    { id: 'all', label: 'All Products', icon: '🥩' },
-    { id: 'chicken', label: 'Chicken', icon: '🍗' },
-    { id: 'mutton', label: 'Mutton', icon: '🐐' },
-    { id: 'seafood', label: 'Seafood', icon: '🦐' },
-    { id: 'eggs', label: 'Eggs', icon: '🥚' },
+    { id: 'all', label: 'All Beef', icon: '🥩' },
+    { id: 'beef', label: 'Fresh Cuts', icon: '🥩' },
 ];
 
 const CategoryTabs: React.FC<CategoryTabsProps> = ({

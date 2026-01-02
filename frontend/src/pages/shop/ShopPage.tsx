@@ -54,12 +54,12 @@ const ShopPage: React.FC = () => {
                         <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
                             Premium Fresh
                             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">
-                                Meat Delivered
+                                Beef Delivered
                             </span>
                         </h1>
 
                         <p className="text-lg md:text-xl text-surface-300 max-w-2xl mx-auto mb-10">
-                            From our butchery to your kitchen. Experience the finest quality meat,
+                            From our stall to your kitchen. Experience the finest quality beef,
                             expertly cut and delivered fresh to your doorstep.
                         </p>
 
