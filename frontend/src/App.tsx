@@ -17,6 +17,11 @@ import TrackOrderPage from './pages/order/TrackOrderPage';
 import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 
+// Auth Pages
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+import ProfilePage from './pages/auth/ProfilePage';
+
 // Layout wrapper for pages with header and footer
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -35,6 +40,15 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="min-h-screen flex flex-col bg-surface-50 dark:bg-surface-950 text-surface-900 dark:text-white transition-colors">
       <Header />
       <main className="flex-1">{children}</main>
+    </div>
+  );
+};
+
+// Auth layout (minimal header)
+const AuthLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <div className="min-h-screen bg-surface-50 dark:bg-surface-950 text-surface-900 dark:text-white transition-colors">
+      {children}
     </div>
   );
 };
@@ -76,6 +90,32 @@ function App() {
                 element={
                   <MainLayout>
                     <TrackOrderPage />
+                  </MainLayout>
+                }
+              />
+
+              {/* Auth Routes */}
+              <Route
+                path="/login"
+                element={
+                  <AuthLayout>
+                    <LoginPage />
+                  </AuthLayout>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <AuthLayout>
+                    <RegisterPage />
+                  </AuthLayout>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <MainLayout>
+                    <ProfilePage />
                   </MainLayout>
                 }
               />

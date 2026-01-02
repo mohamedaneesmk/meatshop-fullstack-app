@@ -7,7 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const Header: React.FC = () => {
     const { totalItems, setIsCartOpen } = useCart();
-    const { theme, toggleTheme, isDark } = useTheme();
+    const { toggleTheme, isDark } = useTheme();
     const { isAdmin, isAuthenticated, logout } = useAuth();
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
     const location = useLocation();
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
                         </div>
                         <div className="hidden sm:block">
                             <h1 className="font-display text-xl md:text-2xl font-bold text-surface-900 dark:text-white">
-                                Fresh<span className="text-primary-500">Meat</span>
+                                SAS <span className="text-primary-500">A1 Beef Stall</span>
                             </h1>
                             <p className="text-xs text-surface-500 dark:text-surface-400 -mt-1">
                                 Premium Quality
@@ -38,8 +38,8 @@ const Header: React.FC = () => {
                         <Link
                             to="/"
                             className={`text-sm font-medium transition-colors hover:text-primary-500 ${location.pathname === '/'
-                                    ? 'text-primary-500'
-                                    : 'text-surface-600 dark:text-surface-300'
+                                ? 'text-primary-500'
+                                : 'text-surface-600 dark:text-surface-300'
                                 }`}
                         >
                             Shop
@@ -47,8 +47,8 @@ const Header: React.FC = () => {
                         <Link
                             to="/track-order"
                             className={`text-sm font-medium transition-colors hover:text-primary-500 ${location.pathname === '/track-order'
-                                    ? 'text-primary-500'
-                                    : 'text-surface-600 dark:text-surface-300'
+                                ? 'text-primary-500'
+                                : 'text-surface-600 dark:text-surface-300'
                                 }`}
                         >
                             Track Order
@@ -57,8 +57,8 @@ const Header: React.FC = () => {
                             <Link
                                 to="/admin"
                                 className={`text-sm font-medium transition-colors hover:text-primary-500 ${isAdminRoute
-                                        ? 'text-primary-500'
-                                        : 'text-surface-600 dark:text-surface-300'
+                                    ? 'text-primary-500'
+                                    : 'text-surface-600 dark:text-surface-300'
                                     }`}
                             >
                                 Dashboard
@@ -99,21 +99,37 @@ const Header: React.FC = () => {
 
                         {/* Auth */}
                         {isAuthenticated ? (
-                            <button
-                                onClick={logout}
-                                className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors text-sm font-medium"
-                            >
-                                <User className="w-4 h-4" />
-                                Logout
-                            </button>
+                            <div className="hidden md:flex items-center gap-2">
+                                <Link
+                                    to="/profile"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors text-sm font-medium"
+                                >
+                                    <User className="w-4 h-4" />
+                                    Profile
+                                </Link>
+                                <button
+                                    onClick={logout}
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl text-surface-500 hover:text-error hover:bg-error/10 transition-colors text-sm font-medium"
+                                >
+                                    Logout
+                                </button>
+                            </div>
                         ) : (
-                            <Link
-                                to="/admin/login"
-                                className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-500 text-white hover:bg-primary-600 transition-colors text-sm font-medium"
-                            >
-                                <User className="w-4 h-4" />
-                                Admin
-                            </Link>
+                            <div className="hidden md:flex items-center gap-2">
+                                <Link
+                                    to="/login"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors text-sm font-medium"
+                                >
+                                    Sign In
+                                </Link>
+                                <Link
+                                    to="/register"
+                                    className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-500 text-white hover:bg-primary-600 transition-colors text-sm font-medium"
+                                >
+                                    <User className="w-4 h-4" />
+                                    Sign Up
+                                </Link>
+                            </div>
                         )}
 
                         {/* Mobile Menu Button */}
@@ -159,23 +175,41 @@ const Header: React.FC = () => {
                                 </Link>
                             )}
                             {isAuthenticated ? (
-                                <button
-                                    onClick={() => {
-                                        logout();
-                                        setMobileMenuOpen(false);
-                                    }}
-                                    className="px-4 py-3 rounded-xl text-left text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
-                                >
-                                    Logout
-                                </button>
+                                <>
+                                    <Link
+                                        to="/profile"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="px-4 py-3 rounded-xl text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
+                                    >
+                                        My Profile
+                                    </Link>
+                                    <button
+                                        onClick={() => {
+                                            logout();
+                                            setMobileMenuOpen(false);
+                                        }}
+                                        className="px-4 py-3 rounded-xl text-left text-error hover:bg-error/10 transition-colors"
+                                    >
+                                        Logout
+                                    </button>
+                                </>
                             ) : (
-                                <Link
-                                    to="/admin/login"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="px-4 py-3 rounded-xl text-primary-500 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
-                                >
-                                    Admin Login
-                                </Link>
+                                <>
+                                    <Link
+                                        to="/login"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="px-4 py-3 rounded-xl text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
+                                    >
+                                        Sign In
+                                    </Link>
+                                    <Link
+                                        to="/register"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="px-4 py-3 rounded-xl text-primary-500 font-medium hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
+                                    >
+                                        Create Account
+                                    </Link>
+                                </>
                             )}
                         </nav>
                     </div>

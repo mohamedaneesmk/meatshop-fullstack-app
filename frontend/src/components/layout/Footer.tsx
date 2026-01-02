@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div>
                                 <h2 className="font-display text-2xl font-bold">
-                                    Fresh<span className="text-primary-400">Meat</span>
+                                    SAS <span className="text-primary-400">A1 Beef Stall</span>
                                 </h2>
                                 <p className="text-xs text-surface-400">Premium Quality</p>
                             </div>
@@ -125,10 +125,10 @@ const Footer: React.FC = () => {
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-primary-400 flex-shrink-0" />
                                 <a
-                                    href="mailto:order@freshmeat.com"
+                                    href="mailto:order@sasa1beefstall.com"
                                     className="text-surface-400 hover:text-primary-400 transition-colors text-sm"
                                 >
-                                    order@freshmeat.com
+                                    order@sasa1beefstall.com
                                 </a>
                             </li>
                             <li className="flex items-center gap-3">
@@ -166,7 +166,7 @@ const Footer: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-surface-500 text-sm">
-                            © {new Date().getFullYear()} FreshMeat. All rights reserved.
+                            © {new Date().getFullYear()} SAS A1 Beef Stall. All rights reserved.
                         </p>
                         <div className="flex items-center gap-6">
                             <a

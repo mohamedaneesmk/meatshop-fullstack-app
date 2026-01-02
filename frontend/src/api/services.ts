@@ -98,3 +98,18 @@ export const register = async (userData: {
     const response = await api.post('/auth/register', userData);
     return response.data;
 };
+
+export const getMe = async (): Promise<ApiResponse<User>> => {
+    const response = await api.get('/auth/me');
+    return response.data;
+};
+
+export const updateProfile = async (profileData: {
+    name: string;
+    phone: string;
+    address?: string;
+}): Promise<ApiResponse<User>> => {
+    const response = await api.put('/auth/profile', profileData);
+    return response.data;
+};
+
