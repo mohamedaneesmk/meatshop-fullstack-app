@@ -61,31 +61,23 @@ const Footer: React.FC = () => {
                                     to="/"
                                     className="text-surface-400 hover:text-primary-400 transition-colors text-sm"
                                 >
-                                    Shop All Products
+                                    Shop All Beef
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    to="/?category=chicken"
+                                    to="/"
                                     className="text-surface-400 hover:text-primary-400 transition-colors text-sm"
                                 >
-                                    Chicken
+                                    Fresh Cuts
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    to="/?category=mutton"
+                                    to="/"
                                     className="text-surface-400 hover:text-primary-400 transition-colors text-sm"
                                 >
-                                    Mutton
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/?category=seafood"
-                                    className="text-surface-400 hover:text-primary-400 transition-colors text-sm"
-                                >
-                                    Seafood
+                                    Premium Steaks
                                 </Link>
                             </li>
                             <li>
@@ -107,28 +99,34 @@ const Footer: React.FC = () => {
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3">
                                 <MapPin className="w-5 h-5 text-primary-400 flex-shrink-0 mt-0.5" />
-                                <span className="text-surface-400 text-sm">
-                                    123 Meat Street, Food District
+                                <span className="text-surface-400 text-sm leading-relaxed">
+                                    No. 1020, 2nd Avenue,
                                     <br />
-                                    Mumbai, Maharashtra 400001
+                                    Mailai Balaji Nagar,
+                                    <br />
+                                    Pallikaranai,
+                                    <br />
+                                    Chennai – 600100,
+                                    <br />
+                                    Tamil Nadu, India
                                 </span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone className="w-5 h-5 text-primary-400 flex-shrink-0" />
                                 <a
-                                    href="tel:+919876543210"
+                                    href="tel:+916383938001"
                                     className="text-surface-400 hover:text-primary-400 transition-colors text-sm"
                                 >
-                                    +91 98765 43210
+                                    +91 63839 38001
                                 </a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-primary-400 flex-shrink-0" />
                                 <a
-                                    href="mailto:order@sasa1beefstall.com"
+                                    href="mailto:sasa1beefstall@gmail.com"
                                     className="text-surface-400 hover:text-primary-400 transition-colors text-sm"
                                 >
-                                    order@sasa1beefstall.com
+                                    sasa1beefstall@gmail.com
                                 </a>
                             </li>
                             <li className="flex items-center gap-3">
@@ -147,7 +145,7 @@ const Footer: React.FC = () => {
                         </h3>
                         <div className="rounded-xl overflow-hidden h-48 bg-surface-800">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995709657!3d19.08219783958221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15555.123456789!2d80.2017!3d12.9366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d0b7b79e12d%3A0x4a5f6e7d8c9b0a1b!2sPallikaranai%2C%20Chennai%2C%20Tamil%20Nadu%20600100!5e0!3m2!1sen!2sin!4v1704067200000!5m2!1sen!2sin"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}

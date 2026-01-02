@@ -8,7 +8,7 @@ export interface Product {
     _id: string;
     name: string;
     description: string;
-    category: 'chicken' | 'mutton' | 'seafood' | 'eggs';
+    category: 'beef';
     image: string;
     weightVariants: WeightVariant[];
     isBestSeller: boolean;
@@ -78,6 +78,6 @@ export interface OrderStats {
     todayOrders: number;
 }
 
-export type Category = 'all' | 'chicken' | 'mutton' | 'seafood' | 'eggs';
+export type Category = 'all' | 'beef';
 
 export type OrderStatus = 'pending' | 'cutting' | 'out-for-delivery' | 'delivered' | 'cancelled';

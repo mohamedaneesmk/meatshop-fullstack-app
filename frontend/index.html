@@ -1,16 +1,32 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="SAS A1 Beef Stall - Premium quality fresh meat delivered to your doorstep. Order chicken, mutton, beef, seafood, and eggs online." />
-  <meta name="keywords" content="meat shop, fresh meat, chicken, mutton, seafood, eggs, online meat delivery" />
+    content="SAS A1 Beef Stall - Premium quality fresh beef delivered to your doorstep. Order fresh beef cuts, steaks, and more online in Chennai." />
+  <meta name="keywords"
+    content="beef shop, fresh beef, beef stall, beef cuts, beef steaks, online beef delivery, Chennai beef" />
   <meta name="author" content="SAS A1 Beef Stall" />
-  <meta name="theme-color" content="#b54735" />
+  <meta name="theme-color" content="#0a0a0a" />
   <title>SAS A1 Beef Stall - Premium Quality Meat Delivered Fresh</title>
+
+  <!-- Prevent flash of wrong theme -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'dark');
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 </head>
 
 <body>
