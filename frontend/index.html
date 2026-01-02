@@ -11,22 +11,58 @@
     content="beef shop, fresh beef, beef stall, beef cuts, beef steaks, online beef delivery, Chennai beef" />
   <meta name="author" content="SAS A1 Beef Stall" />
   <meta name="theme-color" content="#0a0a0a" />
-  <title>SAS A1 Beef Stall - Premium Quality Meat Delivered Fresh</title>
+  <title>SAS A1 Beef Stall - Premium Quality Beef Delivered Fresh</title>
 
-  <!-- Prevent flash of wrong theme -->
+  <!-- Prevent flash of wrong theme - runs before React loads -->
   <script>
     (function () {
-      const savedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = savedTheme || (prefersDark ? 'dark' : 'dark');
+      try {
+        // Check localStorage first
+        const savedTheme = localStorage.getItem('theme');
+        let theme;
 
-      if (theme === 'dark') {
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          theme = savedTheme;
+        } else {
+          // Fall back to system preference
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        // Apply theme class to html element
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.add('light');
+          document.documentElement.classList.remove('dark');
+        }
+
+        // Update theme-color meta tag
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#f8f8f8');
+        }
+      } catch (e) {
+        // Default to dark if anything fails
         document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
       }
     })();
   </script>
+
+  <style>
+    /* Critical CSS to prevent flash */
+    html {
+      background-color: #0a0a0a;
+    }
+
+    html.light {
+      background-color: #f8f8f8;
+    }
+
+    html.dark {
+      background-color: #0a0a0a;
+    }
+  </style>
 </head>
 
 <body>

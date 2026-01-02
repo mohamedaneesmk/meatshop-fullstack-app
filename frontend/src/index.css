@@ -82,24 +82,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Light mode */
-:root {
+/* Light mode (default) */
+:root,
+html.light {
   --bg-primary: var(--color-surface-50);
   --bg-secondary: var(--color-surface-100);
   --bg-card: white;
+  --bg-input: var(--color-surface-50);
   --text-primary: var(--color-surface-900);
   --text-secondary: var(--color-surface-600);
+  --text-muted: var(--color-surface-400);
   --border-color: var(--color-surface-200);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  color-scheme: light;
 }
 
 /* Dark mode */
-.dark {
+html.dark {
   --bg-primary: var(--color-surface-950);
   --bg-secondary: var(--color-surface-900);
   --bg-card: var(--color-surface-850);
+  --bg-input: var(--color-surface-800);
   --text-primary: var(--color-surface-50);
   --text-secondary: var(--color-surface-400);
+  --text-muted: var(--color-surface-500);
   --border-color: var(--color-surface-700);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+
+/* Smooth theme transition */
+html {
+  transition: background-color 0.3s ease;
+}
+
+html.light,
+html.dark {
+  background-color: var(--bg-primary);
 }
 
 /* Animations */

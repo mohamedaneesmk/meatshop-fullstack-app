@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -11,38 +11,55 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// Get initial theme from localStorage or system preference
+/**
+ * Get the initial theme from localStorage or system preference
+ */
 const getInitialTheme = (): Theme => {
     // Check localStorage first
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-        return savedTheme;
+    if (typeof window !== 'undefined') {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+            return savedTheme;
+        }
+
+        // Check system preference
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+
+        // Check if system prefers light
+        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            return 'light';
+        }
     }
 
-    // Check system preference
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-    }
-
-    // Default to dark theme for meat shop aesthetic
-    return 'dark';
+    // Default to light theme if no preference
+    return 'light';
 };
 
-// Apply theme to document immediately to prevent flash
+/**
+ * Apply theme to document and update meta tags
+ */
 const applyTheme = (theme: Theme) => {
     const root = document.documentElement;
+
+    // Apply theme class
     if (theme === 'dark') {
         root.classList.add('dark');
         root.classList.remove('light');
     } else {
-        root.classList.remove('dark');
         root.classList.add('light');
+        root.classList.remove('dark');
     }
+
     // Update meta theme-color for mobile browsers
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
         metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#f8f8f8');
     }
+
+    // Update document body background (fallback)
+    document.body.style.backgroundColor = theme === 'dark' ? '#0a0a0a' : '#f8f8f8';
 };
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -56,7 +73,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
     // Listen for system preference changes
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const darkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
         const handleChange = (e: MediaQueryListEvent) => {
             // Only update if user hasn't manually set a preference
@@ -66,17 +83,29 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
             }
         };
 
-        mediaQuery.addEventListener('change', handleChange);
-        return () => mediaQuery.removeEventListener('change', handleChange);
+        darkMediaQuery.addEventListener('change', handleChange);
+        return () => darkMediaQuery.removeEventListener('change', handleChange);
     }, []);
 
-    const toggleTheme = () => {
-        setThemeState((prev) => (prev === 'light' ? 'dark' : 'light'));
-    };
+    // Listen for storage changes (sync across tabs)
+    useEffect(() => {
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === 'theme' && (e.newValue === 'light' || e.newValue === 'dark')) {
+                setThemeState(e.newValue);
+            }
+        };
 
-    const setTheme = (newTheme: Theme) => {
+        window.addEventListener('storage', handleStorageChange);
+        return () => window.removeEventListener('storage', handleStorageChange);
+    }, []);
+
+    const toggleTheme = useCallback(() => {
+        setThemeState((prev) => (prev === 'light' ? 'dark' : 'light'));
+    }, []);
+
+    const setTheme = useCallback((newTheme: Theme) => {
         setThemeState(newTheme);
-    };
+    }, []);
 
     const isDark = theme === 'dark';
 
